@@ -1,0 +1,1304 @@
+﻿@{
+    ViewData["ParentTitle"] = "Quản Lý Hồ Sơ";
+    ViewData["Title"] = "Quản Lý Hồ Sơ";
+}
+
+@section Styles {
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link href="~/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+
+    <!--CSS-->
+    <link href="~/css/masterdata/index.css" rel="stylesheet" />
+    }
+    <div class="card shadow-sm mb-5">
+        <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible" aria-expanded="true">
+            <h3 class="card-title">Bộ lọc</h3>
+            <div class="card-toolbar rotate-180">
+                <span class="svg-icon svg-icon-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black"></path>
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div id="kt_docs_card_collapsible" class="collapse show" style="">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>Chi tiết lô hàng</h3>
+                                <div class="row">
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6" @*data-column="2" id="filter_col1"*@>
+                                        <label class="form-label">Số invoice/truck</label>
+                                        <input type="search" id="inp-invoice" class="form-control form-control-solid"
+                                           placeholder="nhập invoice/ truck">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6">
+                                        <label class="form-label">Hướng xuất</label>
+                                        <input type="search" id="inp-huongxuat" class="form-control form-control-solid"
+                                           placeholder="nhập hướng xuất">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6">
+                                        <label class="form-label">Số cont/ số chì</label>
+                                        <input type="search" id="inp-cont" class="form-control form-control-solid"
+                                           placeholder="nhập số cont/ số chì">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6">
+                                        <label class="form-label">PIC</label>
+                                        <input type="search" id="inp-pic" class="form-control form-control-solid"
+                                           placeholder="nhập PIC">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6">
+                                        <label class="form-label">Hãng xe</label>
+                                        <input type="search" id="inp-caries" class="form-control form-control-solid"
+                                           placeholder="nhập hãng xe">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-6 col-md-6">
+                                        <label class="form-label">Booking</label>
+                                        <input type="search" id="inp-booking" class="form-control form-control-solid"
+                                           placeholder="nhập số booking">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    @*<div class="fv-row mb-5 col-lg-4 col-md-6" >
+                                <label class="form-label">Thời gian dự kiến từ</label>
+                                <div class="input-group">
+                                <input class="form-control form-control-solid flatpickr-input" placeholder="chọn thời gian" id="inp-packingtime-to"/>
+
+                                </div>
+                                </div>*@
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    @*<div class="fv-row mb-5 col-lg-4 col-md-6">
+                                <label class="form-label">Thời gian đến</label>
+                                <div class="input-group">
+                                <input class="form-control form-control-solid flatpickr-input" placeholder="chọn thời gian" id="inp-packingtime-from" />
+
+                                </div>
+                                </div>*@
+
+                                    <div class="fv-row mb-5 col-lg-4 col-md-6">
+                                        <label class="form-label">Khoảng thời gian</label>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-solid flatpickr-input" placeholder="chọn thời gian" id="kt_daterangepicker" />
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <div class="fv-row mb-5 col-lg-4 col-md-6">
+                                        <label class="form-label">Hồ sơ đã khóa</label>
+                                        <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                                            <input class="form-check-input" type="checkbox" value="" id="inp-unlock-file" />
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3>Warehouse</h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        @*    <div class="fv-row mb-5 col-sm-12 col-md-6">
+                                    <label class="form-label">Đóng ghép kho ngoài</label>
+                                    <!--begin::Radio group-->
+                                    <div class="btn-group w-20 ms-5" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button]">
+                                    <!--begin::Radio-->
+                                    <!--end::Radio-->
+                                    <!--begin::Radio-->
+                                    <label class="btn btn-outline btn-color-muted btn-light-primary me-1" id="inp-KhoNgoai-Co" data-kt-button="true">
+                                    <!--begin::Input-->
+                                    <input class="btn-check " type="radio" name="method" value="1" />
+                                    <!--end::Input-->
+                                    Có
+                                    </label>
+                                    <!--end::Radio-->
+                                    <!--begin::Radio-->
+                                    <label class="btn btn-outline btn-color-muted btn-light-primary me-1" id="inp-KhoNgoai-khong" data-kt-button="true">
+                                    <!--begin::Input-->
+                                    <input class="btn-check " type="radio" name="method" value="2" />
+                                    <!--end::Input-->
+                                    Không
+                                    </label>
+                                    <!--end::Radio-->
+                                    </div>
+                                    <!--end::Radio group-->
+                                    </div>*@
+
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-sm-12 col-md-6" style="width:75%">
+                                            <label class="form-label">Kho KDTVN</label>
+                                            @await Component.InvokeAsync("Warehouse",new {id = "select-ChonKhoKdtvn-edit"})
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-sm-12 col-md-10">
+                                            <label class="form-label">Kho ngoài</label>
+                                            <div class="row" id="result-khongoai">
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="NIPPON" id="inp-Nippon" name="contact-warehouse">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                            NIPPON
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="MOL" id="inp-mol" name="contact-warehouse">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                            MOL
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="Khác" id="inp-khac" name="contact-warehouse">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                            Khác
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-sm-12 col-md-10">
+                                            <label class="form-label">Loại hình</label>
+                                            <div class="row" id="result-loaihinh">
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="SEA" id="inp-SEA" name="conttact-loaihinh">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            SEA
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="AIR" id="inp-AIR" name="conttact-loaihinh">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            AIR
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="LCL" id="inp-LCL" name="conttact-loaihinh">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            LCL
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-sm-12 col-md-10">
+                                            <label class="form-label">Loại cont</label>
+                                            <div class="row" id="Result-ContType">
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="20DC" id="inp-20DC" name="externalLoaiCont">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            20DC
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="40DC" id="inp-40DC" name="externalLoaiCont">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            40DC
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <input class="form-control0 form-check-input form-radio0" type="radio" value="40HC" id="inp-40HC" name="externalLoaiCont">
+                                                        <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                            40HC
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row" style="text-align:center">
+                    <div class="col-md-6 d-flex justify-content-start">
+                        <button type="button" class="btn btn-primary" id="search-btn">
+                            <span class="indicator-label">
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21.7 18.9L18.6 15.8C17.9 16.9 16.9 17.9 15.8 18.6L18.9 21.7C19.3 22.1 19.9 22.1 20.3 21.7L21.7 20.3C22.1 19.9 22.1 19.3 21.7 18.9Z" fill="white"></path>
+                                        <path opacity="0.3" d="M11 20C6 20 2 16 2 11C2 6 6 2 11 2C16 2 20 6 20 11C20 16 16 20 11 20ZM11 4C7.1 4 4 7.1 4 11C4 14.9 7.1 18 11 18C14.9 18 18 14.9 18 11C18 7.1 14.9 4 11 4ZM8 11C8 9.3 9.3 8 11 8C11.6 8 12 7.6 12 7C12 6.4 11.6 6 11 6C8.2 6 6 8.2 6 11C6 11.6 6.4 12 7 12C7.6 12 8 11.6 8 11Z" fill="white"></path>
+                                    </svg> Tìm kiếm
+                                </span>
+                            </span>
+                            <span class="indicator-progress">
+                                Vui lòng đợi... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
+                        <button href="#" class="btn btn-warning ms-5" id="btn_refresh">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+                            </svg> Làm Mới
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="card shadow-sm">
+        @*begin::Result*@
+        <div class="card">
+            <!--begin::Card header-->
+            <div class="card-header border-0 pt-6">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <!--begin::Search-->
+                    <div class="d-flex align-items-center position-relative">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                        <span class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                        <input type="text" id="input_search_masterdata" class="form-control form-control-solid w-250px ps-10" placeholder="tìm kiếm..." />
+                    </div>
+                    <!--end::Search-->
+                </div>
+                <!--begin::Card title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <button class="btn btn-primary me-3 ps-5"  onclick="showModalInsert()">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                        <span class="svg-icon svg-icon-2 m-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor"></rect>
+                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Thêm 
+                    </button>
+                    <button class="btn btn-primary me-3 ps-5" id="btn_modal_add_product">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                        <span class="svg-icon svg-icon-2 m-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />
+                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Thêm excel
+                    </button>
+
+                    <!--begin::Card toolbar-->
+                    <div class="card-toolbar" id="dt_tools">
+                    </div>
+                    <!--end::Card toolbar-->
+
+                </div>
+              
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <div class="card-body">
+                 <table id="tbQLHS" class="table table-striped border rounded gy-5 gs-7">
+                    <thead>
+                        <tr class="fw-bold fs-6 text-gray-800">
+                            <th>Tổng</th>
+                            <th></th>
+                            <th></th>
+                            <th class="min-w-50px">Số hồ sơ</th>
+                            <th class="min-w-80px">Ngày đóng hàng</th>
+                            <th>Số invoice/truck</th>
+                            <th>Số cont/chì</th>
+                            <th>Hướng xuất</th>
+                            <th>PIC</th>
+                            <th>Loại hình</th>
+                            <th>Kho ĐG</th>
+                            <th class="min-w-80px">Kho đóng hàng</th>
+                            <th class="min-w-80px">Hãng xe</th>
+                            <th>Booking</th>
+                            <th>Loại cont</th>
+                            <th class="min-w-80px">TG đóng hàng</th>
+                            <th>6TH</th>
+                            <th>PLR</th>
+                            <th>RICOH</th>
+                            <th>LIBRA MFP</th>
+                            <th>LIBRA PRT</th>
+                            <th>MEBIUS</th>
+                            <th>TONER</th>
+                            <th>RPS</th>
+                            <th class="min-w-80px">6TH A3/A3 S</th>
+                            <th>PICTOR PRT</th>
+                            <th>PICTOR MFP</th>
+                            <th>IRIS</th>
+                            <th>Ghi chú</th>
+                            <th>Thực tích</th>
+                            @* <th>TEM CHECK</th>*@
+                            <th>Người Tạo</th>
+                            @*<th>Cut Time</th>*@
+                            @* <th>THỜI GIAN INVOICE</th>*@
+                            <th>Trạng Thái</th>
+                            <th class="min-w-80px">Tờ khai</th>
+                            <th class="min-w-90px">Hành động</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 fw-bold">
+                    </tbody>             
+                    <tfoot style="text-align:left; font-weight:bold">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th colspan="1" class="text-nowrap align-end"></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+            </div>
+         </div>
+  </div>
+    @*end::Result*@
+
+    <!--Edit ở  code kho C-->
+    <div class="modal fade" tabindex="-1" id="kt-modal-edit">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modal-content-edit" style="width:120%;margin-left:-40px">
+                <div class="modal-header">
+                    <label>
+                        Hồ Sơ :
+                        <span id="ID-main" placeholder="Nhap ID"></span>
+                    </label>
+                    <a id="ID-main-edit" placeholder="Nhap ID"></a>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" onclick="closeEditModal()" aria-label="Close">
+                        <span class="svg-icon svg-icon-2x">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3>Chi tiết lô hàng</h3>
+                                        <div class="row">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_InvoiceTruck">Số invoice/truck</label>
+                                                <input type="search" id="inp-Invoice-Truck-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_ContChi">Số cont/ số chì</label>
+                                                <input type="search" id="inp-Cont-Chi-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_HangXe_edit">Hãng xe</label>
+                                                <input type="search" id="inp-HangXe-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_HuongXuat-edit">Hướng xuất</label>
+                                                <input type="search" id="inp-HuongXuat-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_Pic_edit">PIC</label>
+                                                <input type="search" id="inp-Pic-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_Booking_edit">Booking</label>
+                                                <input type="search" id="inp-Booking-edit" class="form-control form-control-solid"
+                                                   placeholder="">
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <div class="row" id="result-lift-floor" style="margin-top:20px;">
+                                                <div class="col-6">
+                                                    <label class="form-check form-check-custom form-check-solid" for="lbl_InThucTich-edit" id="lbl_InThucTich">
+                                                        <input class="form-check-input" id="inp-InThucTich-edit" type="checkbox" value='false' name="contact-liftfloor-edit" />
+                                                        <span class="form-check-label">
+                                                            In Thực Tích
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="form-check form-check-custom form-check-solid" for="lbl_NangTang_edit" id="lbl_NangTang">
+                                                        <input class="form-check-input" id="inp-Nangtang-edit" type="checkbox" value="true" name="contact-liftfloor-edit" />
+                                                        <span class="form-check-label">
+                                                            Nâng Tầng
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3>Warehouse</h3>
+                                        <div class="row" id="warehouse-edit">
+                                            <div class="col-5">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-6">
+                                                    <label style="width:200%" class="form-label">Đóng ghép kho ngoài</label>
+                                                    <!--begin::Radio group-->
+                                                    <div class="btn-group w-20" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button]">
+                                                        <!--begin::Radio-->
+                                                        <!--end::Radio-->
+                                                        <!--begin::Radio-->
+                                                        <label class="btn btn-outline btn-color-muted btn-light-primary me-1 active" id="inp-Yes-DGKN-edit" data-kt-button="true" value="1">
+                                                            <!--begin::Input-->
+                                                            <input class="btn-check" type="radio" name="contact-DGKN-edit" value="1" checked="checked">
+                                                            <!--end::Input-->
+                                                            Có
+                                                        </label>
+                                                        <!--end::Radio-->
+                                                        <!--begin::Radio-->
+                                                        <label class="btn btn-outline btn-color-muted btn-light-primary me-1" id="inp-No-DGKN-edit" data-kt-button="true">
+                                                            <!--begin::Input-->
+                                                            <input class="btn-check " type="radio" name="contact-DGKN-edit" value="2">
+                                                            <!--end::Input-->
+                                                            Không
+                                                        </label>
+                                                        <!--end::Radio-->
+                                                    </div>
+                                                    <!--end::Radio group-->
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Kho KDTVN</label>
+                                                    @await Component.InvokeAsync("Warehouse",new {id = "select-ChonKhoKdtvn-edit2"})
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Ghi chú</label>
+                                                    <textarea type="text" class="form-control form-control-solid" id="inp-Note-edit" placeholder=""></textarea>
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+
+                                            <div class="col-7">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Kho ngoài</label>
+                                                    <div class="row" id="result-khoNgoai-edit">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="NIPPON" id="inp-Nippon-edit" name="contact-KhoNgoai-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    NIPPON
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="MOL" id="inp-Mol-edit" name="contact-KhoNgoai-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    MOL
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="Khác" id="inp-Khac-edit" name="contact-KhoNgoai-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    Khác
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Loại hình</label>
+                                                    <div class="row" id="result-loaihinh-edit">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="SEA" id="inp-Sea-edit" name="contact-LoaiHinh-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    SEA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="AIR" id="inp-Air-edit" name="contact-LoaiHinh-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    AIR
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="LCL" id="inp-Lcl-edit" name="contact-LoaiHinh-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    LCL
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Loại cont</label>
+                                                    <div class="row" id="result-Conttype-edit">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="20DC" id="inp-20dc-edit" name="contact-ContType-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    20DC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="40DC" id="inp-40dc-edit" name="contact-ContType-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    40DC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="40HC" id="inp-40dc-edit" name="contact-ContType-edit">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    40HC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="modal-time">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <h3>Thời Gian Dự Kiến</h3>
+                                            <div class="row" @* style="display:grid;margin-top:70px;width:160%"*@>
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label for="" class="form-label">Thời gian dự kiến</label>
+                                                    <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeDuKien-edit" />
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label for="" class="form-label">Thời gian cut time</label>
+                                                    <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeCutTime-edit" />
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label for="" class="form-label">Thời gian nhập ct</label>
+                                                    <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeNhapCT-edit" />
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <h3>Warehouse</h3>
+                                            <div class="row">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <!--begin::Input group-->
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                            <label class="form-label">Tờ Khai HQ</label>
+                                                            @await Component.InvokeAsync("DeclarationForm",new {id = "select-ChonToKhai-edit"})
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                    </div>
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="col-3" id="label-kdtvn-khac-edit">
+                                                </div>
+                                                <div class="col-4" style="margin-left:65px" id="date-cont-edit">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="modal-number">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <h3>Số Lượng</h3>
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">6th</label>
+                                            <input type="number" id="inp-6th-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Libra PRT</label>
+                                            <input type="number" id="inp-LibraPrt-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">6th A3/A3 S</label>
+                                            <input type="number" id="inp-6thA3A3S-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">PLR</label>
+                                            <input type="number" id="inp-Plr-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Mebius</label>
+                                            <input type="number" id="inp-Mebius-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Pictor PRT</label>
+                                            <input type="number" id="inp-PictorPrt-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Ricoh</label>
+                                            <input type="number" id="inp-Ricoh-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Toner</label>
+                                            <input type="number" id="inp-Toner-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Pictor MFP</label>
+                                            <input type="number" id="inp-PictorMfp-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Libra MFP</label>
+                                            <input type="number" id="inp-LibraMfp-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">RPS</label>
+                                            <input type="number" id="inp-Rps-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                            <label class="form-label">Iris</label>
+                                            <input type="number" id="inp-Iris-edit" class="form-control form-control-solid"
+                                               placeholder="">
+                                        </div>
+                                        <!--end::Input group-->
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="fv-row mb col-sm col-md" @*style="text-align:center"*@>
+                        <div class="row">
+                            <div class="col-6">
+@*                                  <button type="button" value="Print" class="btn btn-light-primary" id="btn-print">Print</button> *@  
+                                    <button type="button" id="btn-close" class="btn btn-light" onclick="closeEditModal()">Đóng</button>
+                            </div>
+                            <div class="col-6">
+                                <div class="dsbtn" style="float:right">
+                                    <button type="button" id="btn-unlock" class="btn btn-success" onclick="closeEditModal()">Mở Khóa hồ sơ</button>
+                                    <button type="button" class="btn btn-danger" id="btn-lock">Khóa</button>
+                                    <button type="button" class="btn btn-primary" id="btn-update">Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--INSERT Ở KHO C-->
+    <div class="modal fade" tabindex="-1" id="kt-modal-insert">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:120%;margin-left:-40px">
+                <div class="modal-header">
+                    <div class="col">
+                        <a id="ID-main-insert" placeholder="Nhap ID"></a>
+                    </div>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" onclick="closeInsertModal()" aria-label="Close">
+                        <span class="svg-icon svg-icon-2x">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                                <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="currentColor"></rect>
+                                <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="currentColor"></rect>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3>Chi tiết lô hàng</h3>
+                                        <div class="row">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_InvoiceTruck_insert">Số invoice/truck</label>
+                                                <input type="search" id="inp-Invoice-Truck-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập invoice/ truck">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_ContChi_insert">Số cont/ số chì</label>
+                                                <input type="search" id="inp-Cont-Chi-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập số cont/ số chì">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_HangXe_insert">Hãng xe</label>
+                                                <input type="search" id="inp-HangXe-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập hãng xe">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_HuongXuat_insert">Hướng xuất</label>
+                                                <input type="search" id="inp-HuongXuat-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập hướng xuất">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_Pic_insert">PIC</label>
+                                                <input type="search" id="inp-Pic-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập PIC">
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row col-md-6">
+                                                <label class="form-label" id="lbl_Booking_insert">Booking</label>
+                                                <input type="search" id="inp-Booking-insert" class="form-control form-control-solid"
+                                                   placeholder="nhập số booking">
+                                            </div>
+                                            <!--end::Input group-->
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3>Warehouse</h3>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="fv-row mb-5 col-sm-12 col-md-6">
+                                                    <label style="width: 200%;" class="form-label">Đóng ghép kho ngoài</label>
+                                                    <!--begin::Radio group-->
+                                                    <div class="btn-group w-20" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button]">
+
+                                                        <!--begin::Radio-->
+                                                        <label class="btn btn-outline btn-color-muted btn-light-primary me-1" id="inp-Yes-DGKN-insert" data-kt-button="true">
+                                                            <!--begin::Input-->
+                                                            <input class="btn-check" type="radio" name="contact-DGKN-insert" value="1" />
+                                                            <!--end::Input-->
+                                                            Có
+                                                        </label>
+                                                        <!--end::Radio-->
+                                                        <!--begin::Radio-->
+                                                        <label class="btn btn-outline btn-color-muted btn-light-primary me-1" id="inp-No-DGKN-insert" data-kt-button="true">
+                                                            <!--begin::Input-->
+                                                            <input class="btn-check " type="radio" name="contact-DGKN-insert" value="2" />
+                                                            <!--end::Input-->
+                                                            Không
+                                                        </label>
+                                                        <!--end::Radio-->
+                                                    </div>
+                                                    <!--end::Radio group-->
+                                                </div>
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Kho KDTVN</label>
+                                                    @await Component.InvokeAsync("Warehouse",new {id = "select-ChonKhoKdtvn-edit3"})
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Ghi chú</label>
+                                                    <textarea type="text" class="form-control form-control-solid" id="inp-Note-insert"
+                                                          placeholder=""></textarea>
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                            <div class="col-7">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Kho ngoài</label>
+                                                    <div class="row" id="result-KhoNgoai-insert">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="NIPPON" id="inp-Nippon-insert" name="KhoNgoai-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    NIPPON
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="MOL" id="inp-Mol-insert" name="KhoNgoai-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    MOL
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="Khác" id="inp-Khac-insert" name="KhoNgoai-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault1">
+                                                                    Khác
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Loại hình</label>
+                                                    <div class="row" id="result-loaihinh-insert">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="SEA" id="inp-Sea-insert" name="LoaiHinh-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    SEA
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="AIR" id="inp-Air-insert" name="LoaiHinh-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    AIR
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="LCL" id="inp-Lcl-insert" name="LoaiHinh-insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    LCL
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Loại cont</label>
+                                                    <div class="row" id="result_LoaiCont-insert">
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="20DC" id="inp-20dc-insert" name="cont_type_insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    20DC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="40DC" id="inp-40dc-insert" name="cont_type_insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    40DC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="fv-row mb-5 col-sm-12 col-md-4">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input class="form-control0 form-check-input form-radio0" type="radio" value="40HC" id="inp-40hc-insert" name="cont_type_insert">
+                                                                <label class="form-check-label col-md-12" for="flexRadioDefault2">
+                                                                    40HC
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <h3>Thời Gian Dự Kiến</h3>
+                                        <div class="row">
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                <label for="" class="form-label">Thời gian dự kiến</label>
+                                                <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeDuKien-insert" />
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                <label for="" class="form-label" style="display:contents;">Thời gian cut time</label>
+                                                <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeCutTime-insert" />
+                                            </div>
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                <label for="" class="form-label" style="display:contents;">Thời gian nhập ct</label>
+                                                <input class="form-control form-control-solid" placeholder="Pick date & time" id="inp-DateTimeNhapCT-insert" />
+                                            </div>
+                                            <!--end::Input group-->
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <h3>Warehouse</h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-5 col-sm-12 col-md-12">
+                                                    <label class="form-label">Tờ Khai HQ</label>
+                                                    @await Component.InvokeAsync("DeclarationForm",new {id = "select-ChonToKhai-insert"})
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <h3>Số Lượng</h3>
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">6th</label>
+                                        <input type="number" id="inp-6th-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Libra PRT</label>
+                                        <input type="number" id="inp-LibraPrt-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">6th A3/A3 S</label>
+                                        <input type="number" id="inp-6thA3A3S-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">PLR</label>
+                                        <input type="number" id="inp-Plr-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Mebius</label>
+                                        <input type="number" id="inp-Mebius-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Pictor PRT</label>
+                                        <input type="number" id="inp-PictorPrt-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Ricoh</label>
+                                        <input type="number" id="inp-Ricoh-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Toner</label>
+                                        <input type="number" id="inp-Toner-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Pictor MFP</label>
+                                        <input type="number" id="inp-PictorMfp-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Libra MFP</label>
+                                        <input type="number" id="inp-LibraMfp-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">RPS</label>
+                                        <input type="number" id="inp-Rps-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="fv-row mb-5 col-lg-3 col-md-6">
+                                        <label class="form-label">Iris</label>
+                                        <input type="number" id="inp-Iris-insert" class="form-control form-control-solid"
+                                           placeholder="">
+                                    </div>
+                                    <!--end::Input group-->
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" onclick="closeInsertModal()">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="btn-insert">Thêm mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--UPLOAD -->
+    <!--begin:Upload ItemCodeManager Modal-->
+    <div class="modal fade" tabindex="-1" id="upl-product-list-modal" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tải lên danh sách hồ sơ</h5>
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <span class="svg-icon svg-icon-2x"></span>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <div class="modal-body">
+                    <h4 class="card-title">Danh sách hồ sơ</h4>
+                    <p class="text-muted">Tệp được tải lên cần có định dạng đúng như tệp mẫu sau: <a href="~/template/logistic.xlsx">logistic.xlsx</a></p>
+
+                    <!--begin::Dropzone-->
+                    <div class="dropzone" id="kt_file_upload_pl">
+                        <!--begin::Message-->
+                        <div class="dz-message needsclick">
+                            <!--begin::Icon-->
+                            <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                            <!--end::Icon-->
+                            <!--begin::Info-->
+                            <div class="ms-4">
+                                <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Thả tệp vào đây hoặc nhấp để tải lên.</h3>
+                                <span class="fs-7 fw-bold text-gray-400">Mỗi lần chỉ tải lên 1 tệp</span>
+                            </div>
+                            <!--end::Info-->
+                        </div>
+                    </div>
+                    <!--end::Dropzone-->
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="btn_insert">
+                        <span class="indicator-label">
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 22H3C2.4 22 2 21.6 2 21C2 20.4 2.4 20 3 20H21C21.6 20 22 20.4 22 21C22 21.6 21.6 22 21 22ZM11 6.59998V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V6.59998H11Z" fill="black" />
+                                    <path opacity="0.3" d="M7 6.59999H17L12.7 2.3C12.3 1.9 11.7 1.9 11.3 2.3L7 6.59999Z" fill="black" />
+                                </svg> Tải lên
+                            </span>
+                        </span>
+                        <span class="indicator-progress">
+                            Xin vui lòng đợi... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end:Upload ItemCodeManager Modal-->
+
+
+
+    @section Scripts {
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script src="~/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="~/js/datepicker/datepicker.js"></script>
+    <!--end::Page Vendors Javascript-->
+    <script src="~/js/masterdata/masterdata.js"></script>
+}

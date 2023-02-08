@@ -1,0 +1,23 @@
+﻿
+.modal-content .col-6 .row label {
+    padding: 25px
+}
+
+.modal-content .col-6:nth-child(2) .row label {
+    padding: 17px;
+}
+
+#label-kdtvn-khac-edit ul li {
+    padding: 24px;
+    margin-left: -25px;
+}
+
+#myTabContent {
+    width: 200%;
+    margin-left: -25px;
+}
+
+/*.Cau-edit label {
+    margin-left: 90px;
+}
+*/

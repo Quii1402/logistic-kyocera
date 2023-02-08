@@ -1,0 +1,14 @@
+﻿﻿@{
+    List<LogisticManagment.Models.KdtvnWarehouseModel> Warehouses = Model;
+}
+
+<select class="form-control3 form-select " id="@ViewBag.Id" multiple data-control="select2" data-placeholder="chọn Kho KDTVN">
+    <option></option>
+
+    @foreach (var item in Warehouses)
+    {
+        <option value="@item.Name">@item.Description</option>
+    }
+
+
+</select>

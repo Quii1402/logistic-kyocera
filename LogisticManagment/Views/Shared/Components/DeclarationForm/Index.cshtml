@@ -1,0 +1,15 @@
+﻿﻿@{
+    List<LogisticManagment.Models.DeclarationformModel> DeclarationForms = Model;
+}
+
+<select class="form-select " id="@ViewBag.Id" data-control="select2" data-placeholder="Chọn tờ khai HQ">
+    <option></option>
+
+    @foreach (var item in DeclarationForms)
+    {
+        <option value="@item.Name">@item.Name</option>
+    }
+
+
+</select>
+
